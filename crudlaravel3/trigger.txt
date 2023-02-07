@@ -1,0 +1,8 @@
+CREATE TRIGGER nombre_del_trigger
+AFTER INSERT ON facturas
+FOR EACH ROW
+BEGIN
+    SET NEW.base = NEW.cantidad * NEW.precio;
+    SET NEW.importeiva = NEW.base * NEW.iva / 100.0;
+    SET NEW.importe = NEW.base + NEW.importeiva;
+END;
