@@ -64,6 +64,11 @@
                         value="Borrar"
                         class="btn btn-danger">
                 </form>
+
+                {{-- <a href="{{ url('/facturas/create')}}"
+                    class="btn btn-warning">Crear factura</a>  --}}
+                    <a href="{{ route('facturas.create') }}" class="btn btn-warning">Crear factura</a>
+
             </td>
         </tr>
         @endforeach

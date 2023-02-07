@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\FacturasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::get('/', function () {
 // Route::get('/clientes',[ClientesController::class, 'edit']);
 
 Route::resource('clientes', ClientesController::class)->middleware('auth');
+Route::resource('facturas', FacturasController::class)->middleware('auth');
 
 Auth::routes(['register' => false, 'reset' => false]);
 

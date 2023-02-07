@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Clientes extends Model
+class Facturas extends Model
 {
     use HasFactory;
 
-    public function facturas(){
-        return $this->hasMany('App\Models\Facturas');
+    public function cliente(){
+        return $this->belongsTo('App\Models\Clientes');
     }
-    
 }
-
