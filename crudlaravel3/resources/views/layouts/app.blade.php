@@ -33,6 +33,9 @@
                         <li class="nav-iten">
                             <a class="nav-link" href="{{ route('clientes.index') }}">{{ __('Clientes')}}</a>
                         </li>
+                        <li class="nav-iten">
+                            <a class="nav-link" href="{{ route('facturas.index') }}">{{ __('Facturas')}}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

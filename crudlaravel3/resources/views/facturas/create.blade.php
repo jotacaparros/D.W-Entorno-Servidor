@@ -7,7 +7,7 @@
 <h1>Inserta factura</h1>
 
 <br><br>
-<form action= "{{ url('/facturas/create')}}" method="post" enctype="multipart/form-data">
+<form action= "{{ url('/facturas')}}" method="post" enctype="multipart/form-data">
 @csrf
 @include('facturas.form', ['submit' => 'Añadir factura', 'cancel' => 'Cancelar la modificación']);
 {{-- <label for="nombre">Nombre</label>

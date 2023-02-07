@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Facturas;
+use App\Models\Clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacturasController extends Controller
 {
@@ -12,9 +14,17 @@ class FacturasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $buscar = trim($request->get('buscar'));
+        $facturas = DB::table('facturas')
+                        ->select('*')
+                        ->where('numero', 'LIKE', '%' . $buscar . '%')
+                        ->orWhere('id_cliente', 'LIKE', '%' . $buscar . '%')
+                        ->orderBy('numero', 'asc')
+                        ->paginate(10);
+
+        return view('facturas.index', compact('facturas', 'buscar'));
     }
 
     /**
@@ -22,11 +32,9 @@ class FacturasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id_cliente = null)
-    {
-        //
-        //return view('facturas/create');
-        return view('facturas.create', ['cliente_id' => $id_cliente]);
+    public function create()
+    {  
+        return view('facturas.create');
     }
 
     /**
@@ -38,13 +46,14 @@ class FacturasController extends Controller
     public function store(Request $request)
     {
         //
-        $datosFactura = $request->except('_token');
-        $datosFactura['id_cliente'] = $request->input('id_cliente');
-                               
+          // Permitir el método POST
+        
+
+        $datosFactura = $request->except('_token');                           
 
         Facturas::insert($datosFactura);
 
-        return response()->json($datosFactura);
+        return redirect('facturas');
     }
 
     /**
@@ -87,8 +96,13 @@ class FacturasController extends Controller
      * @param  \App\Models\Facturas  $facturas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Facturas $facturas)
+    public function destroy($id)
     {
-        //
+       // $datos = Facturas::findOrFail($id);
+
+        
+        Facturas::destroy($id);
+
+        return redirect('facturas')->with('mensaje', 'Factura borrada.');
     }
 }

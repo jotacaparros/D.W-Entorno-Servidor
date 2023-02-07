@@ -39,13 +39,13 @@
     class="form-control">
 </div>
 
-<input type="hidden"  name="cliente_id" value="{{ $cliente_id }}">
+{{-- <input type="hidden"  name="cliente_id" value="{{ $cliente_id }}"> --}}
 
 <br>
 <input type="submit" value="{{ $submit }}"
     class="btn btn-primary">
 
-<a href="{{ url('clientes/') }}">
+<a href="{{ url('facturas/') }}">
     <input type="button" value="{{ $cancel }}"
     class="btn btn-success">
 </a>
